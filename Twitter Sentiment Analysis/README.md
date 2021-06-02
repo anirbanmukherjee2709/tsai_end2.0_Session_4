@@ -35,7 +35,6 @@ We used _CrossEntropyLoss_ to measure our loss. The final accuracy of the model 
 
 The training and validation loss the model:
 ![](Train_validation_loss.png)
-
 The training and validation loss the model:
 ![](Train_validation_accuracy.png)
 
