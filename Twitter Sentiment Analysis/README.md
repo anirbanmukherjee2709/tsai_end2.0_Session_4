@@ -10,10 +10,13 @@
 
 
 ## Objective & Data description
-The objective of the assigment is to classify sentiments of the tweets. The dataset consists of **1364** tweets with their percieved sentiments as labels. This was also to be achieved by using various NLP data augmentation techniques like "Back Translate", "random_swap" and "random_delete".
+The objective is to classify sentiments of the given tweets from the file 'tweet.csv' provided on canvas. The dataset consists of **1364** tweets with their percieved sentiments as labels. This was also to be achieved by using various NLP data augmentation techniques like "Back Translate", "random_swap" and "random_delete".
 
 ## Proposed Solution
-The proposed solution is to use a multi-layer LSTM model fed by an embedding layer along with using NLP data augmentation techniques.
+Since we only have 1364 tweets, hence we augment the data using multiple augmentation techniques to increase our data-size to train our models better. For the model, we use a multi-layer LSTM model fed by an embedding layer. To classify the tweets into their perceived sentiments from the LSTM layer, we use a fully connected layer with output dimension equal to the number of sentiment labels present in the dataset.
+
+![](LSTM_network.png)
+
 
 ## Augmentation
 Data augmentation is really helpful in Computer vision and NLP. It’s really helpful when we have a limited amount of data available and want to give our model a flavour of different ways of 'reading' a text which has the same meaning. We have used 4 data augmentation techniques:
