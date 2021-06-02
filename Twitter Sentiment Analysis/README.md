@@ -34,15 +34,15 @@ Since it is a multi-class classification problem, we use **_CrossEntropyLoss_** 
 We used _CrossEntropyLoss_ to measure our loss. The final accuracy of the model was measured by **f1 score** of **98.52%**. 
 
 The training and validation loss the model:
-![](Twitter%20Sentiment%20Analysis/Train_validation_loss.png)
+![](Train_validation_loss.png)
 
 The training and validation loss the model:
-![](Twitter%20Sentiment%20Analysis/Train_validation_accuracy.png)
+![](Train_validation_accuracy.png)
 
 
 ## Sample Outcomes
 The mis-classification results were evaluated and following were the results:
-![](Twitter%20Sentiment%20Analysis/Non_matching_predicted_labels.png)
+![](Non_matching_predicted_labels.png)
 
 
 
