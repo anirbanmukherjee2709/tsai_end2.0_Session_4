@@ -34,8 +34,10 @@ Since it is a multi-class classification problem, we use **_CrossEntropyLoss_** 
 We used _CrossEntropyLoss_ to measure our loss. The final accuracy of the model was measured by **f1 score** of **98.52%**. 
 
 The training and validation loss the model:
+
 ![](Train_validation_loss.png)
 The training and validation loss the model:
+
 ![](Train_validation_accuracy.png)
 
 
