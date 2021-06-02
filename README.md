@@ -1,7 +1,7 @@
 # Twitter Sentiment Analysis 
 
 
-- 	[Objective & Data description](objective--data-description)
+- 	[Objective & Data description](#objective--data-description)
 - Proposed Solution
 - Augmentation
 - Model and Loss function
