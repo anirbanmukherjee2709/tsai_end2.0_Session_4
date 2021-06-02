@@ -78,7 +78,9 @@ The training and validation accuracy the model:
 
 ![](Train_validation_accuracy.png)
 
+
 Here is the confusion matrix detailed the misclassifications.
+
 ![](confusion_matrix.png)
 
 ## Sample Outcomes
