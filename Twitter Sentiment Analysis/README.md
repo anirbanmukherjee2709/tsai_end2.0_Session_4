@@ -33,6 +33,7 @@ We augment each of the tweet 6 times, **randomly** choosing one of the 4 augment
 As discussed in proposed architecture, we use a model with embedding, 2 LSTM and fully connected layers.  First we pass our augmented and original dataset through _spacy_ to tokenize it. Post tokenizing, we split the data into training and validation dataset in a 80:20 ratio. Using train dataset we create a vocabulary. To feed train and validation dataset into our model, we create a bucket-iterator. 
 
 We use _Adam_ optimiser with a learning rate of 2*10^-4 and _CrossEntropyLoss_ 
+
 ![](cross_entropy.png)
 
 Cross entropy loss is used since  it is a multi-class classification problem.
