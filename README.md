@@ -1,12 +1,12 @@
 # Twitter Sentiment Analysis 
 
 
-- 	[Objective & Data description](#objective--data-description)
+- [Objective & Data description](#objective--data-description)
 - [Proposed Solution](#proposed-solution)
 - [Augmentation](#augmentation)
 - [Model and Loss function](#model-and-loss-function)
-- [Results: Accuracy, Loss](#results:-accuracy,-loss)
-- [Sample Outcomes & Visualisation](#sample-outcomes-&-visualisation)
+- [Results: Accuracy, Loss](#results-accuracy-loss)
+- [Sample Outcomes](#sample-outcomes)
 
 
 ## Objective & Data description
