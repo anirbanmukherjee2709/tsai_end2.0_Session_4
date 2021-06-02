@@ -15,7 +15,7 @@ The objective is to classify sentiments of the given tweets from the file 'tweet
 ## Proposed Solution
 Since we only have 1364 tweets, hence we augment the data using multiple augmentation techniques to increase our data-size to train our models better. For the model, we use a multi-layer LSTM model fed by an embedding layer. To classify the tweets into their perceived sentiments from the LSTM layer, we use a fully connected layer with output dimension equal to the number of sentiment labels present in the dataset.
 
-![](LSTM_network.png)
+![](LSTM_Network.png)
 
 
 ## Augmentation
