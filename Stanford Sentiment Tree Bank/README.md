@@ -13,7 +13,7 @@
 The Stanford Sentiment Treebank dataset  consists of 11,855 sentences extracted from movie reviews with fine-grained sentiment labels [1–5] (1 most negative and 5 most positive) also converted to a scale of [1-25] where 1 being most negative and 25 being most positive. It also consists of well as 215,154 phrases that compose each sentence in the dataset. This was also to be achieved by using various NLP data augmentation techniques like "random_insertion", "Back Translate", "random_swap" and "random_delete".
 
 ## Proposed Solution
-Since we only have 1364 tweets, hence we augment the data using multiple augmentation techniques to increase our data-size to train our models better. For the model, we use a multi-layer LSTM model fed by an embedding layer. To classify the tweets into their perceived sentiments from the LSTM layer, we use a fully connected layer with output dimension equal to the number of sentiment labels present in the dataset.
+Eventhough we have 8545 sentences, still we augment the data using multiple augmentation techniques to increase our data-size to train our models better. For the model, we use a multi-layer LSTM model fed by an embedding layer. To classify the sentences into their perceived sentiment labels from the LSTM layer, we use two fully connected layers with output dimension equal to both the sentiments' labels present in the dataset. 
 
 ![](LSTM_Network.png)
 
@@ -25,12 +25,12 @@ We have used 4 data augmentation techniques:
 - **random_swap**: we randomly swap the order of two words in a sentence. To achieve this, we smaple two indices (index1 != index2; index1 & index2 < length of sentence > 1)
 - **translate_and_back**: we take a sentence and convert it to a language randomly chosen from the **_google_trans_new_** library's list of languages and then translate it back to english, which is the original language of our tweet. We use translate only 4% of the times to limit the API calls to google server and avoid bad_request timeouts
 
-We augment each of the tweet 6 times, **randomly** choosing one of the 4 augmentation techniques mentioned above with probabilities of 32% each for the first three and 4% for translate_and_back. We have kept our augmentation per tweet to 6 times so as to reduce our data augmentation runtime. This can be exceeded to 16 based on the paper[^1].
+We augment each of the tweet 6 times, **randomly** choosing one of the 4 augmentation techniques mentioned above with probabilities of 33% each for the first three and 1% for translate_and_back. We have kept our augmentation per tweet to 6 times so as to reduce our data augmentation runtime. This can be exceeded to 16 based on the paper[^1].
 
 
 
 ## Model and Loss function
-As discussed in proposed architecture, we use a model with embedding, 2 LSTM and fully connected layers.  First we pass our augmented and original dataset through _spacy_ to tokenize it. Post tokenizing, we split the data into training and validation dataset in a 80:20 ratio. Using train dataset we create a vocabulary. To feed train and validation dataset into our model, we create a bucket-iterator. 
+As discussed in proposed architecture, we use a model with embedding (600), 3 LSTM and 2 fully connected layers.  First we pass our augmented and original dataset through _spacy_ to tokenize it. We tokenize the training, validation and testing daya individually as our dataset is already split into train-valid-test hence we teh same split to create the bucketiterators. Using train dataset we created a vocabulary.
 
 We use _Adam_ optimiser with a learning rate of 2*10^-4 and _CrossEntropyLoss_ 
 
@@ -39,73 +39,77 @@ We use _Adam_ optimiser with a learning rate of 2*10^-4 and _CrossEntropyLoss_
 Cross entropy loss is used since  it is a multi-class classification problem.
 This model was trained for 25 epochs. 
 ```
-Epoch 1 | Time Taken: 26.23s
-	Train Loss: 0.927 | Train Acc: 66.52%
-	 Val. Loss: 0.826 |  Val. Acc: 74.05% 
+Epoch 1 | Time Taken: 37.08s
+    Train Loss  5 labels: 1.525 | Train Acc   5 labels: 35.90%
+     Val. Loss  5 labels: 1.394 |  Val. Acc   5 labels: 50.08% 
 
-Epoch 2 | Time Taken: 24.69s
-	Train Loss: 0.805 | Train Acc: 75.73%
-	 Val. Loss: 0.771 |  Val. Acc: 79.07% 
+    Train Loss 25 labels: 3.172 | Train Acc 25 labels: 11.04%
+     Val. Loss 25 labels: 3.083 |  Val. Acc 25 labels: 22.89% 
 
-Epoch 3 | Time Taken: 24.71s
-	Train Loss: 0.747 | Train Acc: 81.67%
-	 Val. Loss: 0.723 |  Val. Acc: 83.89% 
+Epoch 2 | Time Taken: 37.18s
+    Train Loss  5 labels: 1.393 | Train Acc   5 labels: 51.18%
+     Val. Loss  5 labels: 1.200 |  Val. Acc   5 labels: 71.13% 
+
+    Train Loss 25 labels: 3.105 | Train Acc 25 labels: 19.06%
+     Val. Loss 25 labels: 2.970 |  Val. Acc 25 labels: 34.21% 
+
+Epoch 3 | Time Taken: 37.43s
+    Train Loss  5 labels: 1.284 | Train Acc   5 labels: 62.83%
+     Val. Loss  5 labels: 1.167 |  Val. Acc   5 labels: 74.57% 
+
+    Train Loss 25 labels: 3.032 | Train Acc 25 labels: 27.41%
+     Val. Loss 25 labels: 2.914 |  Val. Acc 25 labels: 38.76% 
 .....	 
 .....	 
 .....
-Epoch 23 | Time Taken: 25.03s
-	Train Loss: 0.569 | Train Acc: 98.30%
-	 Val. Loss: 0.624 |  Val. Acc: 92.97% 
+Epoch 23 | Time Taken: 37.60s
+    Train Loss  5 labels: 0.945 | Train Acc   5 labels: 96.11%
+     Val. Loss  5 labels: 0.931 |  Val. Acc   5 labels: 97.37%
 
-Epoch 24 | Time Taken: 24.84s
-	Train Loss: 0.568 | Train Acc: 98.37%
-	 Val. Loss: 0.618 |  Val. Acc: 93.28% 
+    Train Loss 25 labels: 2.488 | Train Acc 25 labels: 80.99%
+     Val. Loss 25 labels: 2.414 |  Val. Acc 25 labels: 87.37%
 
-Epoch 25 | Time Taken: 24.90s
-	Train Loss: 0.566 | Train Acc: 98.57%
-	 Val. Loss: 0.619 |  Val. Acc: 93.07% 
+Epoch 24 | Time Taken: 37.60s
+    Train Loss  5 labels: 0.944 | Train Acc   5 labels: 96.28%
+     Val. Loss  5 labels: 0.929 |  Val. Acc   5 labels: 97.63%
+
+    Train Loss 25 labels: 2.471 | Train Acc 25 labels: 82.61%
+     Val. Loss 25 labels: 2.405 |  Val. Acc 25 labels: 88.21%
+
+Epoch 25 | Time Taken: 37.60s
+    Train Loss  5 labels: 0.942 | Train Acc   5 labels: 96.44%
+     Val. Loss  5 labels: 0.929 |  Val. Acc   5 labels: 97.63%
+
+    Train Loss 25 labels: 2.455 | Train Acc 25 labels: 84.15%
+     Val. Loss 25 labels: 2.399 |  Val. Acc 25 labels: 88.71%
 	 
 ```
-As we can see, the model starts from 74% validation accuracy and 0.826 validation loss which by 25th epoch is decreased to  Val. Loss: 0.619 |  Val. Acc: 93.07% . 
+As we can see, the model for sentiments [1-5] starts from 50% validation accuracy and 1.394 validation loss which by 25th epoch is decreased to  Val. Loss  5 labels: 0.929 |  Val. Acc   5 labels: 97.63%
+
+Similarly, the model for sentiments [1-25] starts from ~23% validation accuracy and 3.083 validation loss which by 25th epoch is decreased to  Val. Loss al. Loss 25 labels: 2.399 |  Val. Acc 25 labels: 88.71%
 
 ## Results: Accuracy, Loss
-Post training our model, we get a training accuracy of 98.57% and a validation accuracy of 93%. Also, we calculate the **f1 score** of **98.52%**. 
+Post training our model for sentiments' labels [1-5], we get a training accuracy of 96.44% and a validation accuracy of 97.63%.
 
 The training and validation loss the model for sentiments_5 (for sentiments on scale 1-5):
 
-![](Train_validation_loss.png)
+![](train_valid_label_loss_5.png)
 
 The training and validation accuracy the model for sentiments_5 (for sentiments on scale 1-5):
 
-![](Train_validation_accuracy.png)
+![](train_valid_label_accuracy_5.png)
 
+
+Post training our model for sentiments' labels [1-25], we get a training accuracy of 84% and a validation accuracy of 88%. 
 
 The training and validation loss the model for sentiments_25 (for sentiments on scale 1-25):
 
-![](Train_validation_loss.png)
+![](train_valid_label_loss_25.png)
 
 The training and validation accuracy the model for sentiments_25 (for sentiments on scale 1-25):
 
-![](Train_validation_accuracy.png)
+![](train_valid_label_accuracy_25.png)
 
-
-Here is the confusion matrix detailed the misclassifications for sentiments_5 (for sentiments on scale 1-5).
-
-![](confusion_matrix.png)
-
-Here is the confusion matrix detailed the misclassifications for sentiments_25 (for sentiments on scale 1-25).
-
-![](confusion_matrix.png)
-
-## Sample Outcomes
-The mis-classification results for the sentiments_5 (for sentiments on scale 1-5) were evaluated and following were the results:
-
-![](Non_matching_predicted_labels.png)
-
-
-The mis-classification results for the sentiments_25 (for sentiments on scale 1-25) were evaluated and following were the results:
-
-![](Non_matching_predicted_labels.png)
 
 
 [^1]  **EDA: Easy Data Augmentation Techniques for Boosting Performance on Text Classification Tasks** (https://arxiv.org/abs/1901.11196)
