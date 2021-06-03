@@ -1,4 +1,4 @@
-# Twitter Sentiment Analysis 
+# Standford Sentiment Treebank
 
 
 - [Objective & Data description](#objective--data-description)
@@ -10,7 +10,7 @@
 
 
 ## Objective & Data description
-The objective is to classify sentiments of the given tweets from the file 'tweet.csv' provided on canvas. The dataset consists of **1364** tweets with their percieved sentiments as labels. This was also to be achieved by using various NLP data augmentation techniques like "Back Translate", "random_swap" and "random_delete".
+The Stanford Sentiment Treebank dataset  consists of 11,855 sentences extracted from movie reviews with fine-grained sentiment labels [1–5] (1 most negative and 5 most positive) also converted to a scale of [1-25] where 1 being most negative and 25 being most positive. It also consists of well as 215,154 phrases that compose each sentence in the dataset. This was also to be achieved by using various NLP data augmentation techniques like "random_insertion", "Back Translate", "random_swap" and "random_delete".
 
 ## Proposed Solution
 Since we only have 1364 tweets, hence we augment the data using multiple augmentation techniques to increase our data-size to train our models better. For the model, we use a multi-layer LSTM model fed by an embedding layer. To classify the tweets into their perceived sentiments from the LSTM layer, we use a fully connected layer with output dimension equal to the number of sentiment labels present in the dataset.
@@ -71,25 +71,41 @@ As we can see, the model starts from 74% validation accuracy and 0.826 validatio
 ## Results: Accuracy, Loss
 Post training our model, we get a training accuracy of 98.57% and a validation accuracy of 93%. Also, we calculate the **f1 score** of **98.52%**. 
 
-The training and validation loss the model:
+The training and validation loss the model for sentiments_5 (for sentiments on scale 1-5):
 
 ![](Train_validation_loss.png)
 
-The training and validation accuracy the model:
+The training and validation accuracy the model for sentiments_5 (for sentiments on scale 1-5):
 
 ![](Train_validation_accuracy.png)
 
 
-Here is the confusion matrix detailed the misclassifications.
+The training and validation loss the model for sentiments_25 (for sentiments on scale 1-25):
+
+![](Train_validation_loss.png)
+
+The training and validation accuracy the model for sentiments_25 (for sentiments on scale 1-25):
+
+![](Train_validation_accuracy.png)
+
+
+Here is the confusion matrix detailed the misclassifications for sentiments_5 (for sentiments on scale 1-5).
+
+![](confusion_matrix.png)
+
+Here is the confusion matrix detailed the misclassifications for sentiments_25 (for sentiments on scale 1-25).
 
 ![](confusion_matrix.png)
 
 ## Sample Outcomes
-The mis-classification results were evaluated and following were the results:
+The mis-classification results for the sentiments_5 (for sentiments on scale 1-5) were evaluated and following were the results:
+
 ![](Non_matching_predicted_labels.png)
 
 
+The mis-classification results for the sentiments_25 (for sentiments on scale 1-25) were evaluated and following were the results:
 
+![](Non_matching_predicted_labels.png)
 
 
 [^1]  **EDA: Easy Data Augmentation Techniques for Boosting Performance on Text Classification Tasks** (https://arxiv.org/abs/1901.11196)
