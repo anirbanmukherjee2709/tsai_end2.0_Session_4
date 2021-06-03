@@ -12,7 +12,7 @@
 
 **Stanford Sentiment Tree Bank READme**: https://github.com/anirbanmukherjee2709/tsai_end2.0_Session_5/blob/main/Twitter%20Sentiment%20Analysis/README.md
 
-**Stanford Sentiment Tree Bank Colab**: https://github.com/anirbanmukherjee2709/tsai_end2.0_Session_5/blob/main/Twitter%20Sentiment%20Analysis/README.md
+**Stanford Sentiment Tree Bank Colab**: https://github.com/anirbanmukherjee2709/tsai_end2.0_Session_5/blob/main/Stanford%20Sentiment%20Tree%20Bank/Stanford_sentiment_treebank.ipynb
 
 
 
