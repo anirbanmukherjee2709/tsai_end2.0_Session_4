@@ -115,6 +115,12 @@ The training and validation accuracy the model for sentiments_25 (for sentiments
 [^1]  **EDA: Easy Data Augmentation Techniques for Boosting Performance on Text Classification Tasks** (https://arxiv.org/abs/1901.11196)
 
 
+## Group
+
+- Anirban Mukherjee
+- Debasish Sarangi
+
+
 
 
 

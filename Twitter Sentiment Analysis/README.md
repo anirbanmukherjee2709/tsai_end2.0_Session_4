@@ -95,6 +95,12 @@ The mis-classification results were evaluated and following were the results:
 [^1]  **EDA: Easy Data Augmentation Techniques for Boosting Performance on Text Classification Tasks** (https://arxiv.org/abs/1901.11196)
 
 
+## Group
+
+- Anirban Mukherjee
+- Debasish Sarangi
+
+
 
 
 
