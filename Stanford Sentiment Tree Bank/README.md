@@ -93,6 +93,7 @@ Confusion Matrix:
 - We only use an simple LSTM model here. More sophisticated models can be used for better prediction
 - We see this as a case of overfitting as the validation accuracy keeps decreasing futher from the increasing train accuracy
 - This time we did did it only for 5 classes. Training can also be extended to 1-25 classes to see any performance changes
+- Since teh sentinments provided in the actual data are on a continuous scale, we can create this into a regression problem post letting features out of the LSTM model and prdict on a continuous scale
 - Add callbacks to the code to get the best valid accuracy and stop training when required accuracy is reached
 
 
