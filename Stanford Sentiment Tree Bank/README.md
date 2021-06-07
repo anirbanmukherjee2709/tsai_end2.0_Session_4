@@ -13,7 +13,7 @@
 The Stanford Sentiment Treebank dataset  consists of 11,855 sentences extracted from movie reviews with fine-grained sentiment labels [1–5] (1 most negative and 5 most positive). It also consists of well as 215,154 phrases that compose each sentence in the dataset. This was also to be achieved by using various NLP data augmentation techniques like "random_insertion", "Back Translate", "random_swap" and "random_delete".
 
 ## Proposed Solution
-Eventhough we have 8545 sentences, still we augment the data using multiple augmentation techniques to increase our data-size to train our models better. For the model, we use a multi-layer LSTM model fed by an embedding layer. To classify the sentences into their perceived sentiment labels from the LSTM layer, we use two fully connected layers with output dimension equal to both the sentiments' labels present in the dataset. 
+Eventhough we have 11,855 sentences (train- 8297 and valid- 3558 sentences), still we augment the data using multiple augmentation techniques to increase our data-size to train our models better. For the model, we use a multi-layer LSTM model fed by an embedding layer. To classify the sentences into their perceived sentiment labels from the LSTM layer, we use two fully connected layers with output dimension equal to both the sentiments' labels present in the dataset. 
 
 ![](LSTM_Network.png)
 
@@ -30,7 +30,7 @@ We augment each of the tweet 6 times, **randomly** choosing one of the 4 augment
 
 
 ## Model and Loss function
-As discussed in proposed architecture, we use a model with embedding (600), 3 LSTM and 2 fully connected layers.  First we pass our augmented and original dataset through _spacy_ to tokenize it. We tokenize the training, validation and testing daya individually as our dataset is already split into train-valid-test hence we teh same split to create the bucketiterators. Using train dataset we created a vocabulary.
+As discussed in proposed architecture, we use a model with embedding (300), 4 LSTM and 2 fully connected layers.  First we pass our augmented and original dataset through _spacy_ to tokenize it. We tokenize the training, validation and testing daya individually as our dataset is already split into train-valid-test hence we teh same split to create the bucketiterators. Using train dataset we created a vocabulary.
 
 We use _Adam_ optimiser with a learning rate of 1*10^-4 and _CrossEntropyLoss_ 
 
