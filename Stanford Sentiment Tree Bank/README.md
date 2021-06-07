@@ -37,7 +37,7 @@ We use _Adam_ optimiser with a learning rate of 1*10^-4 and _CrossEntropyLoss_
 ![](cross_entropy.png)
 
 Cross entropy loss is used since  it is a multi-class classification problem.
-This model was trained for 25 epochs. 
+This model was trained for 40 epochs. 
 ```
 Epoch 1 | Time Taken: 20.04s
 	Train Loss  5 labels: 1.573 | Train Acc  5 labels: 29.51%
@@ -70,7 +70,7 @@ As we can see, the model for sentiments [1-5] starts from 32.48% validation accu
 
 
 ## Results: Accuracy, Loss
-Post training our model for sentiments' labels [1-5], we get a training accuracy of 96.44% and a validation accuracy of 97.63%.
+Post training our model for sentiments' labels [1-5], we get a training accuracy of 93.52% and a validation accuracy of 32.15%.
 
 The training and validation loss the model for sentiments_5 (for sentiments on scale 1-5):
 
