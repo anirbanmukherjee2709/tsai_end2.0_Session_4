@@ -6,11 +6,11 @@
 - [Augmentation](#augmentation)
 - [Model and Loss function](#model-and-loss-function)
 - [Results: Accuracy, Loss](#results-accuracy-loss)
-- [Sample Outcomes](#sample-outcomes)
+- [Further Improvements](#further-improvements)
 
 
 ## Objective & Data description
-The Stanford Sentiment Treebank dataset  consists of 11,855 sentences extracted from movie reviews with fine-grained sentiment labels [1–5] (1 most negative and 5 most positive) also converted to a scale of [1-25] where 1 being most negative and 25 being most positive. It also consists of well as 215,154 phrases that compose each sentence in the dataset. This was also to be achieved by using various NLP data augmentation techniques like "random_insertion", "Back Translate", "random_swap" and "random_delete".
+The Stanford Sentiment Treebank dataset  consists of 11,855 sentences extracted from movie reviews with fine-grained sentiment labels [1–5] (1 most negative and 5 most positive). It also consists of well as 215,154 phrases that compose each sentence in the dataset. This was also to be achieved by using various NLP data augmentation techniques like "random_insertion", "Back Translate", "random_swap" and "random_delete".
 
 ## Proposed Solution
 Eventhough we have 8545 sentences, still we augment the data using multiple augmentation techniques to increase our data-size to train our models better. For the model, we use a multi-layer LSTM model fed by an embedding layer. To classify the sentences into their perceived sentiment labels from the LSTM layer, we use two fully connected layers with output dimension equal to both the sentiments' labels present in the dataset. 
@@ -32,61 +32,42 @@ We augment each of the tweet 6 times, **randomly** choosing one of the 4 augment
 ## Model and Loss function
 As discussed in proposed architecture, we use a model with embedding (600), 3 LSTM and 2 fully connected layers.  First we pass our augmented and original dataset through _spacy_ to tokenize it. We tokenize the training, validation and testing daya individually as our dataset is already split into train-valid-test hence we teh same split to create the bucketiterators. Using train dataset we created a vocabulary.
 
-We use _Adam_ optimiser with a learning rate of 2*10^-4 and _CrossEntropyLoss_ 
+We use _Adam_ optimiser with a learning rate of 1*10^-4 and _CrossEntropyLoss_ 
 
 ![](cross_entropy.png)
 
 Cross entropy loss is used since  it is a multi-class classification problem.
 This model was trained for 25 epochs. 
 ```
-Epoch 1 | Time Taken: 37.08s
-    Train Loss  5 labels: 1.525 | Train Acc   5 labels: 35.90%
-     Val. Loss  5 labels: 1.394 |  Val. Acc   5 labels: 50.08% 
+Epoch 1 | Time Taken: 20.04s
+	Train Loss  5 labels: 1.573 | Train Acc  5 labels: 29.51%
+	 Val. Loss  5 labels: 1.555 |  Val. Acc  5 labels: 32.48% 
 
-    Train Loss 25 labels: 3.172 | Train Acc 25 labels: 11.04%
-     Val. Loss 25 labels: 3.083 |  Val. Acc 25 labels: 22.89% 
+Epoch 2 | Time Taken: 19.88s
+	Train Loss  5 labels: 1.512 | Train Acc  5 labels: 38.61%
+	 Val. Loss  5 labels: 1.536 |  Val. Acc  5 labels: 34.90% 
 
-Epoch 2 | Time Taken: 37.18s
-    Train Loss  5 labels: 1.393 | Train Acc   5 labels: 51.18%
-     Val. Loss  5 labels: 1.200 |  Val. Acc   5 labels: 71.13% 
-
-    Train Loss 25 labels: 3.105 | Train Acc 25 labels: 19.06%
-     Val. Loss 25 labels: 2.970 |  Val. Acc 25 labels: 34.21% 
-
-Epoch 3 | Time Taken: 37.43s
-    Train Loss  5 labels: 1.284 | Train Acc   5 labels: 62.83%
-     Val. Loss  5 labels: 1.167 |  Val. Acc   5 labels: 74.57% 
-
-    Train Loss 25 labels: 3.032 | Train Acc 25 labels: 27.41%
-     Val. Loss 25 labels: 2.914 |  Val. Acc 25 labels: 38.76% 
+Epoch 3 | Time Taken: 19.98s
+	Train Loss  5 labels: 1.460 | Train Acc  5 labels: 44.09%
+	 Val. Loss  5 labels: 1.530 |  Val. Acc  5 labels: 35.10% 
 .....	 
 .....	 
 .....
-Epoch 23 | Time Taken: 37.60s
-    Train Loss  5 labels: 0.945 | Train Acc   5 labels: 96.11%
-     Val. Loss  5 labels: 0.931 |  Val. Acc   5 labels: 97.37%
+Epoch 38 | Time Taken: 19.92s
+	Train Loss  5 labels: 0.981 | Train Acc  5 labels: 92.97%
+	 Val. Loss  5 labels: 1.572 |  Val. Acc  5 labels: 31.99% 
 
-    Train Loss 25 labels: 2.488 | Train Acc 25 labels: 80.99%
-     Val. Loss 25 labels: 2.414 |  Val. Acc 25 labels: 87.37%
+Epoch 39 | Time Taken: 19.98s
+	Train Loss  5 labels: 0.978 | Train Acc  5 labels: 93.18%
+	 Val. Loss  5 labels: 1.576 |  Val. Acc  5 labels: 31.57% 
 
-Epoch 24 | Time Taken: 37.60s
-    Train Loss  5 labels: 0.944 | Train Acc   5 labels: 96.28%
-     Val. Loss  5 labels: 0.929 |  Val. Acc   5 labels: 97.63%
-
-    Train Loss 25 labels: 2.471 | Train Acc 25 labels: 82.61%
-     Val. Loss 25 labels: 2.405 |  Val. Acc 25 labels: 88.21%
-
-Epoch 25 | Time Taken: 37.60s
-    Train Loss  5 labels: 0.942 | Train Acc   5 labels: 96.44%
-     Val. Loss  5 labels: 0.929 |  Val. Acc   5 labels: 97.63%
-
-    Train Loss 25 labels: 2.455 | Train Acc 25 labels: 84.15%
-     Val. Loss 25 labels: 2.399 |  Val. Acc 25 labels: 88.71%
+Epoch 40 | Time Taken: 19.95s
+	Train Loss  5 labels: 0.975 | Train Acc  5 labels: 93.52%
+	 Val. Loss  5 labels: 1.572 |  Val. Acc  5 labels: 32.15% 
 	 
 ```
-As we can see, the model for sentiments [1-5] starts from 50% validation accuracy and 1.394 validation loss which by 25th epoch is decreased to  Val. Loss  5 labels: 0.929 |  Val. Acc   5 labels: 97.63%
+As we can see, the model for sentiments [1-5] starts from 32.48% validation accuracy and 1.555 validation loss which by 40th epoch is decreased to  Val. Loss  5 labels: 1.572 |  Val. Acc   5 labels: 32.15%
 
-Similarly, the model for sentiments [1-25] starts from ~23% validation accuracy and 3.083 validation loss which by 25th epoch is decreased to  Val. Loss al. Loss 25 labels: 2.399 |  Val. Acc 25 labels: 88.71%
 
 ## Results: Accuracy, Loss
 Post training our model for sentiments' labels [1-5], we get a training accuracy of 96.44% and a validation accuracy of 97.63%.
@@ -99,16 +80,19 @@ The training and validation accuracy the model for sentiments_5 (for sentiments 
 
 ![](train_valid_label_accuracy_5.png)
 
+Confusion Matrix:
 
-Post training our model for sentiments' labels [1-25], we get a training accuracy of 84% and a validation accuracy of 88%. 
 
-The training and validation loss the model for sentiments_25 (for sentiments on scale 1-25):
+![](confusion_matrix.png)
 
-![](train_valid_label_loss_25.png)
 
-The training and validation accuracy the model for sentiments_25 (for sentiments on scale 1-25):
 
-![](train_valid_label_accuracy_25.png)
+## Further Improvements
+
+- As we saw in the confusion matrix, our model makes most classification mistakes in the positive classes. Hence, special notice and augmentation for the positive classes may help in lifting the score
+- We only use an simple LSTM model here. More sophisticated models can be used for better prediction
+- We see this as a case of overfitting as the validation accuracy keeps decreasing futher from the increasing train accuracy
+- This time we did did it only for 5 classes. Training can also be extended to 1-25 classes to see any performance changes
 
 
 
@@ -119,7 +103,6 @@ The training and validation accuracy the model for sentiments_25 (for sentiments
 
 - Anirban Mukherjee
 - Debasish Sarangi
-
 
 
 
